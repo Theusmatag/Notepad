@@ -24,10 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
     var notas = Provider.of<Note>(context).teste;
 
     var nt = Provider.of<Note>(context);
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Stack(
             children: [
               Column(
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: const EdgeInsets.fromLTRB(10, 0.0, 0, 0),
                               child: Text(
                                 'Notepad',
-                                style: Theme.of(context).textTheme.headline1,
+                                style: Theme.of(context).textTheme.displayLarge,
                               ),
                             ),
                           ],
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const SearchBar(),
+                        const SearchBarNote(),
                       ],
                     ),
                   ),
@@ -92,13 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         color: const Color(0x94d5e9f8)),
-                                    height:
-                                        MediaQuery.of(context).size.width * 0.18,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.91,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.18,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.91,
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(22, 8, 0, 8),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          22, 8, 0, 8),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -136,15 +136,20 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const CreateNote(),
-            ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const CreateNote(),
           ),
-          backgroundColor: const Color(0xff3F2EF4),
-          child: const Icon(Icons.add, size: 50),
+        ),
+        backgroundColor: const Color(0xff3F2EF4),
+        child: const Icon(
+          Icons.add,
+          size: 50,
+          color: Colors.white,
         ),
       ),
     );

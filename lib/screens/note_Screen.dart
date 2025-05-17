@@ -7,9 +7,9 @@ class NoteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var notas = ModalRoute.of(context)?.settings.arguments as Note;
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(

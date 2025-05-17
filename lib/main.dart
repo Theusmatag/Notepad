@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark));
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark));
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return ChangeNotifierProvider(
       create: (context) => Note(),
@@ -26,13 +26,29 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Notepad',
         theme: ThemeData(
+            dialogTheme: const DialogTheme(
+              backgroundColor: Colors.white,
+            ),
+            cardColor: Colors.white,
+            cardTheme: const CardThemeData(
+                color: Colors.white,
+                surfaceTintColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)))),
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: Colors.black, // Cor do cursor
+              selectionColor:
+                  Colors.blue.withValues(alpha: 0.4), // Cor da seleção do texto
+              selectionHandleColor:
+                  Colors.black, // Cor do manipulador de seleção
+            ),
             fontFamily: 'Biennale',
             textTheme: const TextTheme(
-                headline1: TextStyle(
+                displayLarge: TextStyle(
                     fontSize: 30,
                     color: Color(0xFF1A1A26),
                     fontWeight: FontWeight.bold))),
-        home: const SafeArea(child:  HomeScreen()),
+        home: const HomeScreen(),
         routes: {'Note_Screen': (context) => const NoteScreen()},
       ),
     );

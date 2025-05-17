@@ -20,12 +20,12 @@ class _CreateNoteState extends State<CreateNote> {
     final formKey = GlobalKey<FormState>();
     final func = Provider.of<Note>(context);
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SizedBox(
-          height: double.infinity,
-          width: double.infinity,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SizedBox(
+        height: double.infinity,
+        width: double.infinity,
+        child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -91,8 +91,14 @@ class _CreateNoteState extends State<CreateNote> {
                         TextFormField(
                           textCapitalization: TextCapitalization.sentences,
                           decoration: const InputDecoration(
-                            labelText: 'Title',
-                          ),
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              labelText: 'Title',
+                              labelStyle: TextStyle(color: Colors.black)),
                           controller: titleController,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
@@ -107,8 +113,15 @@ class _CreateNoteState extends State<CreateNote> {
                         ),
                         TextFormField(
                           textCapitalization: TextCapitalization.sentences,
-                          decoration:
-                              const InputDecoration(labelText: 'Your note here !'),
+                          decoration: const InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              labelText: 'Your note here !',
+                              labelStyle: TextStyle(color: Colors.black)),
                           controller: noteController,
                           textAlign: TextAlign.justify,
                           keyboardType: TextInputType.multiline,
@@ -131,22 +144,25 @@ class _CreateNoteState extends State<CreateNote> {
             ),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            final isValid = formKey.currentState?.validate() ?? false;
-            if (!isValid) return;
-            func.done(
-                noteController.text,
-                titleController.text,
-                DateFormat(
-                  ' MMMM dd,  yyyy - hh:mm a ',
-                ).format(DateTime.now()),
-                Random().nextDouble().toString());
-            Navigator.of(context).pop();
-          },
-          backgroundColor: const Color(0xff3F2EF4),
-          child: const Icon(Icons.done),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final isValid = formKey.currentState?.validate() ?? false;
+          if (!isValid) return;
+          func.done(
+              noteController.text,
+              titleController.text,
+              DateFormat(
+                ' MMMM dd,  yyyy - hh:mm a ',
+              ).format(DateTime.now()),
+              Random().nextDouble().toString());
+          Navigator.of(context).pop();
+        },
+        backgroundColor: const Color(0xff3F2EF4),
+        child: const Icon(
+          Icons.done,
+          color: Colors.white,
         ),
       ),
     );

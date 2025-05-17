@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notepad/models/note.dart';
 import 'package:provider/provider.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+class SearchBarNote extends StatelessWidget {
+  const SearchBarNote({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +12,7 @@ class SearchBar extends StatelessWidget {
     return TextField(
       onChanged: (value) => nt.filter(value),
       decoration: InputDecoration(
+        floatingLabelStyle: const TextStyle(color: Colors.black),
         prefixIcon: const Icon(Icons.search),
         focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.black, width: 2.0),
@@ -22,10 +23,9 @@ class SearchBar extends StatelessWidget {
         filled: true,
         fillColor: const Color(0x94d5e9f8),
         labelText: 'Search notes',
-        labelStyle:
-            MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
-          final Color color = states.contains(MaterialState.error)
-              ? Theme.of(context).errorColor
+        labelStyle: WidgetStateTextStyle.resolveWith((Set<WidgetState> states) {
+          final Color color = states.contains(WidgetState.error)
+              ? Theme.of(context).colorScheme.error
               : Colors.grey;
 
           return TextStyle(color: color, fontWeight: FontWeight.bold);
